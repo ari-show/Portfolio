@@ -24,3 +24,32 @@ content.querySelectorAll('h2').forEach((h) => {
 content.replaceChildren(...cards);
 
 document.querySelector('#year')!.textContent = String(new Date().getFullYear());
+
+// 背景の三角(赤・青・水色を大小さまざまに、固定シードで毎回同じ配置)
+const bg = document.querySelector<HTMLElement>('#bg')!;
+const colors = ['#d43a3a', '#2b56b8', '#d43a3a', '#2b56b8', '#9ec5ea'];
+let seed = 2107;
+const rand = () => {
+  seed = (seed * 1664525 + 1013904223) >>> 0;
+  return seed / 4294967296;
+};
+const between = (a: number, b: number) => a + rand() * (b - a);
+for (let i = 0; i < 26; i++) {
+  const tri = document.createElement('i');
+  const sign = rand() < 0.5 ? -1 : 1;
+  const vars: Record<string, string> = {
+    '--x': `${between(-2, 98)}%`,
+    '--y': `${between(-2, 96)}%`,
+    '--s': `${Math.round(between(14, 96))}px`,
+    '--c': colors[Math.floor(rand() * colors.length)],
+    '--o': between(0.18, 0.5).toFixed(2),
+    '--r': `${Math.round(between(0, 360))}deg`,
+    '--spin': `${sign * Math.round(between(30, 120))}deg`,
+    '--dx': `${Math.round(between(-40, 40))}px`,
+    '--dy': `${Math.round(between(-60, 60))}px`,
+    '--d': `${between(7, 16).toFixed(1)}s`,
+    '--delay': `-${between(0, 12).toFixed(1)}s`,
+  };
+  for (const [k, v] of Object.entries(vars)) tri.style.setProperty(k, v);
+  bg.append(tri);
+}

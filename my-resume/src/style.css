@@ -20,7 +20,7 @@ body {
 }
 a { color: var(--link); text-decoration: none; }
 a:hover { color: #1d4f88; }
-main { max-width: 1040px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 40px; }
+main { position: relative; z-index: 1; max-width: 1040px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 40px; }
 
 /* hero card */
 .hero {
@@ -29,9 +29,6 @@ main { max-width: 1040px; margin: 0 auto; padding: 72px 24px 24px; display: flex
   padding: 56px 72px;
   background: #fff; border: 1px solid var(--line); border-radius: 4px;
 }
-.tri { position: absolute; width: 0; height: 0; border-style: solid; }
-.tri-red { top: 28px; left: 400px; border-width: 18px 11px 0; border-color: var(--red) transparent transparent; }
-.tri-blue { top: 60px; left: 452px; border-width: 0 8px 13px; border-color: transparent transparent var(--blue); }
 .avatar { width: 300px; height: 300px; flex-shrink: 0; border-radius: 50%; object-fit: cover; border: 10px solid var(--sky); }
 .hero-body { flex-grow: 1; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 h1 { margin: 0; font-size: 88px; font-weight: 900; line-height: 1; letter-spacing: -1px; }
@@ -82,10 +79,28 @@ footer { padding: 24px; text-align: center; font-size: 14px; color: var(--muted)
   main { padding-top: 32px; }
   .hero { flex-direction: column; text-align: center; gap: 28px; padding: 40px 24px; }
   .hero-body { align-items: center; }
-  .tri { display: none; }
   .avatar { width: 200px; height: 200px; }
   h1 { font-size: 60px; }
   .links { justify-content: center; }
   #content { grid-template-columns: minmax(0, 1fr); }
   .card[data-name="資格"] { grid-column: auto; }
+}
+
+/* 背景に浮遊する三角 */
+#bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+#bg i {
+  position: absolute;
+  left: var(--x); top: var(--y);
+  width: var(--s); height: var(--s);
+  background: var(--c); opacity: var(--o);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform: rotate(var(--r));
+  animation: float var(--d) ease-in-out var(--delay) infinite alternate;
+}
+@keyframes float {
+  from { transform: translate(0, 0) rotate(var(--r)); }
+  to { transform: translate(var(--dx), var(--dy)) rotate(calc(var(--r) + var(--spin))); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #bg i { animation: none; }
 }
