@@ -17,3 +17,13 @@ sw.addEventListener('click', () => {
     /* 保存できなくても切り替え自体は有効 */
   }
 });
+
+// 手動で選んだことがなければ、OS / ブラウザの設定変更(昼夜の自動切り替えなど)に追従する
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+  try {
+    if (localStorage.getItem('theme')) return;
+  } catch {
+    /* 読めない場合は追従する */
+  }
+  apply(e.matches ? 'dark' : 'light');
+});
