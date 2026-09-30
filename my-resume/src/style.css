@@ -60,7 +60,8 @@ hr { width: 100%; height: 1px; margin: 8px 0; border: 0; background: var(--line)
 /* 行頭の太字: 日付は青の等幅 */
 .card li strong { display: block; font-family: var(--mono); font-size: 14px; font-weight: 400; color: var(--link); }
 
-/* 技術: アイコン付きピル */
+/* 技術: 小見出し + アイコン付きピル */
+.card[data-name="技術"] h3 { margin: 0 0 14px; font-size: 14px; font-weight: 700; color: var(--muted); }
 .card[data-name="技術"] ul { flex-direction: row; flex-wrap: wrap; gap: 10px; font-size: 16px; }
 .card[data-name="技術"] li,
 .card[data-name="技術"] li a { display: inline-flex; align-items: center; gap: 8px; }
@@ -75,14 +76,14 @@ hr { width: 100%; height: 1px; margin: 8px 0; border: 0; background: var(--line)
 
 /* 登壇・勉強会・スタッフ: 全幅、種別バッジ + 2列リスト */
 .card[data-name^="登壇"] { grid-column: 1 / -1; }
-.card h3 {
+.card[data-name^="登壇"] h3 {
   display: inline-block; margin: 28px 0 14px; padding: 2px 12px; border-radius: 4px;
   font-size: 13px; font-weight: 700; color: #fff; background: var(--blue);
 }
-.card h2 + h3 { margin-top: 0; }
-.card h3[data-kind="登壇"] { background: var(--red); }
-.card h3[data-kind="スタッフ"] { background: var(--sky); color: var(--ink); }
-.card h3 + ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 32px; font-size: 16px; }
+.card[data-name^="登壇"] h2 + h3 { margin-top: 0; }
+.card[data-name^="登壇"] h3[data-kind="登壇"] { background: var(--red); }
+.card[data-name^="登壇"] h3[data-kind="スタッフ"] { background: var(--sky); color: var(--ink); }
+.card[data-name^="登壇"] h3 + ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 32px; font-size: 16px; }
 
 /* 使用言語(描画後に追加される) */
 .card.langs { grid-column: 1 / -1; animation: fade-in .4s ease both; }
@@ -112,7 +113,7 @@ footer { padding: 24px; text-align: center; font-size: 14px; color: var(--muted)
   h1 { font-size: 60px; }
   .links { justify-content: center; }
   #content { grid-template-columns: minmax(0, 1fr); }
-  .card h3 + ul { grid-template-columns: minmax(0, 1fr); }
+  .card[data-name^="登壇"] h3 + ul { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* 背景に浮遊する三角 */

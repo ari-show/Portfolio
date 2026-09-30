@@ -68,8 +68,8 @@ const render = (container: HTMLElement, bytes: Bytes) => {
   if (other > 0) items.push({ name: 'Other', share: other / sum, color: '#c5ccd6' });
 
   const card = el('section', 'card langs');
-  card.dataset.name = '使用言語';
-  card.append(el('h2', undefined, '使用言語'));
+  card.dataset.name = '言語使用率';
+  card.append(el('h2', undefined, '言語使用率'));
 
   const bar = el('div', 'lang-bar');
   bar.setAttribute('aria-hidden', 'true');

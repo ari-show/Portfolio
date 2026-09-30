@@ -10,6 +10,7 @@
 - **2021.03 - 2024.12** 株式会社 湘南ゼミナール(アルバイト)
 
 ## 技術
+### 使用言語
 - [![](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg) Python](https://docs.python.org/ja/3/)
 - [![](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg) Jupyter](https://docs.jupyter.org/en/latest/)
 - [![](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg) PHP](https://www.php.net/manual/ja/)
@@ -32,7 +33,9 @@
 
 ## 登壇・勉強会・スタッフ
 ### 登壇
-- [TechRamen/セッション切れに苦しまない: DockerとJupyter Notebookの活用法](https://fortee.jp/techramen-24-conf/proposal/022cb6b6-3d5a-48a4-be41-2d4dc3e1163b)
+- [TechRamen2024(2024-07-27)](https://techramenconf.net/2024/)
+- [一周年!若手エンジニアふんわりLT Day!(2024-08-11)](https://wakate-funwari-study.connpass.com/event/323430/)
+- [新卒N年目の勉強会#5(2026-09-04)](https://fresh-engineers.connpass.com/event/402753/)
 
 ### スタッフ
 - [PHPerKaigi2024](https://phperkaigi.jp/2024/)
