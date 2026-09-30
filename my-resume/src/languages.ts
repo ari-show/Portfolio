@@ -4,7 +4,7 @@ const CACHE_KEY = 'gh-langs-v1';
 const CACHE_TTL = 6 * 60 * 60 * 1000; // 未認証APIは 60回/時 なので、結果を数時間キャッシュ
 const MAX_REPOS = 30;
 const MIN_SHARE = 0.02; // これ未満は Other にまとめる
-const PALETTE = ['#2b56b8', '#d43a3a', '#9ec5ea', '#232a36', '#2f6fb5', '#e58b8b', '#6f8fd6', '#8a94a6'];
+const PALETTE = ['#3f6fd8', '#d43a3a', '#9ec5ea', '#7b8494', '#2f6fb5', '#e58b8b', '#6f8fd6', '#8a94a6'];
 
 interface Repo { name: string; fork: boolean; archived: boolean; language: string | null }
 type Bytes = Record<string, number>;

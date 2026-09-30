@@ -1,6 +1,7 @@
 import { marked } from 'marked';
 import md from './content.md?raw';
 import './style.css';
+import './theme';
 
 const content = document.querySelector<HTMLElement>('#content')!;
 
@@ -30,7 +31,7 @@ document.querySelector('#year')!.textContent = String(new Date().getFullYear());
 
 // 背景の三角(赤・青・水色を大小さまざまに、固定シードで毎回同じ配置)
 const bg = document.querySelector<HTMLElement>('#bg')!;
-const colors = ['#d43a3a', '#2b56b8', '#d43a3a', '#2b56b8', '#9ec5ea'];
+const colors = ['#d43a3a', '#3f6fd8', '#d43a3a', '#3f6fd8', '#9ec5ea'];
 let seed = 2107;
 const rand = () => {
   seed = (seed * 1664525 + 1013904223) >>> 0;
