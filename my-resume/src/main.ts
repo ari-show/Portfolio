@@ -22,6 +22,9 @@ content.querySelectorAll('h2').forEach((h) => {
   cards.push(card);
 });
 content.replaceChildren(...cards);
+content.querySelectorAll('h3').forEach((h) => {
+  h.dataset.kind = h.textContent ?? '';
+});
 
 document.querySelector('#year')!.textContent = String(new Date().getFullYear());
 
