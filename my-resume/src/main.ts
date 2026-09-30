@@ -3,17 +3,24 @@ import md from './content.md?raw';
 import './style.css';
 
 const content = document.querySelector<HTMLElement>('#content')!;
-const nav = document.querySelector<HTMLElement>('#nav')!;
 
 content.innerHTML = marked.parse(md, { async: false });
 
-// 各 h2 にアンカーIDを付け、ナビを自動生成する
-content.querySelectorAll('h2').forEach((h, i) => {
-  h.id = `section-${i + 1}`;
-  const a = document.createElement('a');
-  a.href = `#${h.id}`;
-  a.textContent = h.textContent;
-  nav.append(a);
+// 各 h2 とその直後の要素を1枚のカード(section)にまとめる
+const cards: HTMLElement[] = [];
+content.querySelectorAll('h2').forEach((h) => {
+  const card = document.createElement('section');
+  card.className = 'card';
+  card.dataset.name = h.textContent ?? '';
+  let node: Element | null = h.nextElementSibling;
+  card.append(h);
+  while (node && node.tagName !== 'H2') {
+    const next: Element | null = node.nextElementSibling;
+    card.append(node);
+    node = next;
+  }
+  cards.push(card);
 });
+content.replaceChildren(...cards);
 
 document.querySelector('#year')!.textContent = String(new Date().getFullYear());
