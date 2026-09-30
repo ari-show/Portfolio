@@ -1,15 +1,14 @@
 const root = document.documentElement;
-const btn = document.querySelector<HTMLButtonElement>('#theme-toggle')!;
+const sw = document.querySelector<HTMLButtonElement>('#theme-toggle')!;
 
 const apply = (theme: 'light' | 'dark') => {
   root.dataset.theme = theme;
-  btn.setAttribute('aria-pressed', String(theme === 'dark'));
-  btn.setAttribute('aria-label', theme === 'dark' ? 'ライトモードに切り替え' : 'ダークモードに切り替え');
+  sw.setAttribute('aria-checked', String(theme === 'dark'));
 };
 
 apply(root.dataset.theme === 'dark' ? 'dark' : 'light');
 
-btn.addEventListener('click', () => {
+sw.addEventListener('click', () => {
   const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
   apply(next);
   try {
