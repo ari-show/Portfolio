@@ -34,11 +34,11 @@ const rand = () => {
   return seed / 4294967296;
 };
 const between = (a: number, b: number) => a + rand() * (b - a);
-for (let i = 0; i < 26; i++) {
+const addTriangle = (xMin: number, xMax: number) => {
   const tri = document.createElement('i');
   const sign = rand() < 0.5 ? -1 : 1;
   const vars: Record<string, string> = {
-    '--x': `${between(-2, 98)}%`,
+    '--x': `${between(xMin, xMax)}%`,
     '--y': `${between(-2, 96)}%`,
     '--s': `${Math.round(between(14, 96))}px`,
     '--c': colors[Math.floor(rand() * colors.length)],
@@ -52,4 +52,7 @@ for (let i = 0; i < 26; i++) {
   };
   for (const [k, v] of Object.entries(vars)) tri.style.setProperty(k, v);
   bg.append(tri);
-}
+};
+for (let i = 0; i < 26; i++) addTriangle(-2, 98);
+// 右側が寂しくならないよう、右寄りに追加
+for (let i = 0; i < 12; i++) addTriangle(62, 98);
