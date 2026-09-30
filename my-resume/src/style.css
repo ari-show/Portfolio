@@ -77,11 +77,13 @@ hr { width: 100%; height: 1px; margin: 8px 0; border: 0; background: var(--line)
 .btn svg { width: 24px; height: 24px; fill: currentColor; }
 .btn-dark { background: var(--btn-dark-bg); color: var(--btn-dark-fg); }
 .btn-blue { background: var(--blue); color: #fff; }
+.btn-sky { background: var(--sky); color: var(--on-sky); }
 .btn-outline { background: transparent; color: var(--ink); border-color: var(--ink); }
 .btn-outline svg { fill: none; }
 .btn:hover { opacity: .88; color: inherit; }
 .btn-dark:hover { color: var(--btn-dark-fg); }
 .btn-blue:hover { color: #fff; }
+.btn-sky:hover { color: var(--on-sky); }
 .handles { margin: 6px 0 0; font-family: var(--mono); font-size: 15px; color: var(--muted); }
 
 /* content cards */
