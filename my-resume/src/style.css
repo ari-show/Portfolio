@@ -87,7 +87,6 @@ hr { width: 100%; height: 1px; margin: 8px 0; border: 0; background: var(--line)
 /* content cards */
 #content { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .card { background: var(--card); border: 1px solid var(--line-soft); border-radius: 4px; padding: 32px 36px; }
-.card[data-name="資格"] { grid-column: 1 / -1; }
 .card h2 { margin: 0 0 20px; font-size: 24px; font-weight: 900; }
 .card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; font-size: 17px; }
 
