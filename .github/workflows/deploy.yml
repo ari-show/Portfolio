@@ -33,5 +33,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./my-resume/build
+          publish_dir: ./my-resume/dist
           cname: ari-show.com
