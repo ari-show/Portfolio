@@ -173,7 +173,6 @@ hr { width: 100%; height: 1px; margin: 8px 0; border: 0; background: var(--line)
 :root[data-theme="dark"] h1 { font-weight: 800; }
 :root[data-theme="dark"] .card h2::before { content: "$ "; color: var(--prompt); }
 :root[data-theme="dark"] .card h2 { font-size: 20px; font-weight: 700; }
-:root[data-theme="dark"] .role::before { content: "$ cat profile.txt\A"; white-space: pre; display: block; font-size: 15px; color: var(--muted); margin-bottom: 4px; }
 :root[data-theme="dark"] .card[data-name="技術"] li { background: rgba(147, 197, 253, .08); }
 
 footer { padding: 24px; text-align: center; font-size: 14px; color: var(--muted); }
