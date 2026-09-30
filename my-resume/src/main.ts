@@ -22,6 +22,9 @@ content.querySelectorAll('h2').forEach((h) => {
   cards.push(card);
 });
 content.replaceChildren(...cards);
+content.querySelectorAll('h3').forEach((h) => {
+  h.dataset.kind = h.textContent ?? '';
+});
 
 document.querySelector('#year')!.textContent = String(new Date().getFullYear());
 
@@ -56,3 +59,10 @@ const addTriangle = (xMin: number, xMax: number) => {
 for (let i = 0; i < 26; i++) addTriangle(-2, 98);
 // 右側が寂しくならないよう、右寄りに追加
 for (let i = 0; i < 12; i++) addTriangle(62, 98);
+
+// 本体の描画が終わってから、言語使用率を非同期に取得・描画する
+const loadLanguages = () => {
+  const run = () => import('./languages').then((m) => m.renderLanguages(content));
+  'requestIdleCallback' in window ? requestIdleCallback(run, { timeout: 3000 }) : setTimeout(run, 500);
+};
+document.readyState === 'complete' ? loadLanguages() : window.addEventListener('load', loadLanguages, { once: true });
