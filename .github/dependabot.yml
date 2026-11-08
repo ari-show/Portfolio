@@ -55,3 +55,10 @@ updates:
       - "docker"
     commit-message:
       prefix: "docker"
+    ignore:
+      # Skip non-LTS (odd-numbered) Node.js majors
+      - dependency-name: "node"
+        versions:
+          - "25.x"
+          - "27.x"
+          - "29.x"
