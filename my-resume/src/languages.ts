@@ -1,8 +1,9 @@
 const USER = 'ari-show';
 const API = 'https://api.github.com';
-const CACHE_KEY = 'gh-langs-v1';
+const CACHE_KEY = 'gh-langs-v2';
 const CACHE_TTL = 6 * 60 * 60 * 1000; // 未認証APIは 60回/時 なので、結果を数時間キャッシュ
 const MAX_REPOS = 30;
+const EXCLUDED_LANGUAGES = new Set(['Jupyter Notebook']);
 const MIN_SHARE = 0.02; // これ未満は Other にまとめる
 const PALETTE = ['#3f6fd8', '#d43a3a', '#9ec5ea', '#7b8494', '#2f6fb5', '#e58b8b', '#6f8fd6', '#8a94a6'];
 
@@ -41,12 +42,16 @@ const fetchBytes = async (): Promise<Bytes> => {
   const results = await Promise.allSettled(repos.map((r) => getJSON<Bytes>(`/repos/${USER}/${r.name}/languages`)));
   for (const r of results) {
     if (r.status !== 'fulfilled') continue;
-    for (const [lang, n] of Object.entries(r.value)) totals[lang] = (totals[lang] ?? 0) + n;
+    for (const [lang, n] of Object.entries(r.value)) {
+      if (!EXCLUDED_LANGUAGES.has(lang)) totals[lang] = (totals[lang] ?? 0) + n;
+    }
   }
   if (Object.keys(totals).length > 0) return totals;
 
   // レート制限などで言語APIが全滅した場合は、リポジトリの主言語数で代用する
-  for (const r of repos) if (r.language) totals[r.language] = (totals[r.language] ?? 0) + 1;
+  for (const r of repos) {
+    if (r.language && !EXCLUDED_LANGUAGES.has(r.language)) totals[r.language] = (totals[r.language] ?? 0) + 1;
+  }
   return totals;
 };
 
@@ -88,7 +93,7 @@ const render = (container: HTMLElement, bytes: Bytes) => {
     li.append(dot, el('span', undefined, it.name), el('em', undefined, `${(it.share * 100).toFixed(1)}%`));
     legend.append(li);
   }
-  card.append(bar, legend, el('p', 'note', 'GitHub の公開リポジトリ(フォーク・アーカイブ除く)のコード量から算出'));
+  card.append(bar, legend, el('p', 'note', 'GitHub の公開リポジトリのコード量から算出（フォーク・アーカイブ、Jupyter Notebook を除く）'));
   container.append(card);
 
   // 追加直後に幅を伸ばして、バーが描画される動きを出す
