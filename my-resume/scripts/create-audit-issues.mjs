@@ -71,9 +71,10 @@ for (const [id, advisory] of advisories) {
 
   const body = [
     marker,
-    'npm audit が high または critical の脆弱性を検出しました。',
+    `${advisory.name} に high または critical の脆弱性が検出されました。`,
     '',
     `- パッケージ: ${advisory.name}`,
+    `- 脆弱性の内容: ${advisory.title}（原文）`,
     `- 深刻度: ${advisory.severity}`,
     `- 影響範囲: ${advisory.range}`,
     `- 詳細: ${advisory.url}`,
@@ -81,8 +82,8 @@ for (const [id, advisory] of advisories) {
     '### 影響を受ける依存関係と npm audit の修正案',
     ...fixes,
     '',
-    'Dependabot の修正 PR を確認してください。修正版がない場合や依存関係の制約で更新できない場合は、公開・対応状況を追跡し、更新後に監査とビルドを再確認してください。',
-    '対応後、またはアドバイザリが撤回された場合は、この Issue を閉じてください。',
+    '修正 PR を確認し、更新後に監査とビルドを再確認してください。修正版がない場合は対応状況を追跡します。',
+    '修正後またはアドバイザリ撤回後に、この Issue を閉じてください。',
   ].join('\n');
-  execFileSync('gh', ['issue', 'create', '--title', `[Security] ${advisory.name}: ${advisory.title}`, '--body', body], { stdio: 'inherit' });
+  execFileSync('gh', ['issue', 'create', '--title', `依存関係 ${advisory.name} の脆弱性に対応`, '--body', body], { stdio: 'inherit' });
 }
