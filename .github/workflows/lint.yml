@@ -32,8 +32,12 @@ jobs:
         run: npm ci --ignore-scripts
         working-directory: ./my-resume
 
-      - name: Audit dependencies
-        run: npm audit --audit-level=high
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+        working-directory: ./my-resume
+
+      - name: Report development dependency vulnerabilities
+        run: node scripts/audit-development.mjs
         working-directory: ./my-resume
 
       - name: Build site
