@@ -1,5 +1,7 @@
 # ポートフォリオ
-[ポートフォリオサイト](https://shotaarima.github.io/Portfolio/#/)はこちらです
+[![Dependabot Updates](https://github.com/ari-show/Portfolio/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/ari-show/Portfolio/actions/workflows/dependabot/dependabot-updates)
+
+[ポートフォリオサイト](https://ari-show.com)はこちらです
 ## ローカル環境の構築
 ```bash
 docker compose up -d
